@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
 var EventsSchema = new Schema({      
  name: { type: String   },       
  message: { type: String   },
- timeframe: { type: Date, default: Date.now },
+ timeframe: { type: String },
  eventtyp: { type: String },
  time : { type : Date, default: Date.now }
 

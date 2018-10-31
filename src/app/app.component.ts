@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-declare const TEST_FIXTURE: string
 
 @Component({
   selector: 'app-root',
