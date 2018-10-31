@@ -7,37 +7,55 @@
     <!-- responsive row has 12 columns by default -->
     <mat-card class="col-md-12">
       <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
-        <mat-horizontal-stepper labelPosition="bottom">
-          <mat-step label="Step 1">
-            <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy">
-              <mat-button-toggle value="sport">Sport</mat-button-toggle>
-              <mat-button-toggle value="game">Game</mat-button-toggle>
-              <mat-button-toggle value="goout">Go out</mat-button-toggle>
+        <mat-horizontal-stepper linear labelPosition="bottom">
+          <mat-step label="What do you want to do?">
+            <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
+              required>
+              <mat-button-toggle value="sport">
+                <mat-icon>pool</mat-icon>Sport
+              </mat-button-toggle>
+              <mat-button-toggle value="game">
+                <mat-icon>casino</mat-icon>Game
+              </mat-button-toggle>
+              <mat-button-toggle value="goout">
+                <mat-icon>free_breakfast</mat-icon>Go out
+              </mat-button-toggle>
+              <mat-button-toggle value="shopping">
+                <mat-icon>store</mat-icon>Shopping
+              </mat-button-toggle>
+              <mat-button-toggle value="cooking">
+                <mat-icon>kitchen</mat-icon>Cooking
+              </mat-button-toggle>
+              <mat-button-toggle value="movie">
+                <mat-icon>theaters</mat-icon>Movie
+              </mat-button-toggle>
+              <mat-button-toggle value="other">
+                <mat-icon>input</mat-icon>Other
+              </mat-button-toggle>
             </mat-button-toggle-group>
-            <div class="example-selected-value">Selected value: {{group.value}}</div>
-
             <div>
               <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
             </div>
           </mat-step>
-          <mat-step label="Step 2">
+          <mat-step label="When do you want to hang?">
             <mat-form-field>
-              <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
-                placeholder="Date Time" [(ngModel)]="time">
+              <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date" [(ngModel)]="time"
+                required>
             </mat-form-field>
             <owl-date-time [pickerMode]="'dialog'" [pickerType]="'calendar'" #dt2></owl-date-time>
-            <!-- <input matInput name="time" [owlDateTime]="dt2" [selectMode]="'range'" [owlDateTimeTrigger]="dt2"
-                placeholder="Date Time" [(ngModel)]="time">
+            <!-- <mat-form-field>
+              <input matInput name="timeframe" [owlDateTime]="dt1" [selectMode]="'range'" [owlDateTimeTrigger]="dt1"
+                placeholder="Timeframe" [(ngModel)]="timeframe">
             </mat-form-field>
-            <owl-date-time [pickerMode]="'dialog'" [pickerType]="'timer'" #dt2></owl-date-time> -->
+            <owl-date-time [pickerMode]="'dialog'" [pickerType]="'timer'" #dt1></owl-date-time> -->
             <div>
               <button mat-raised-button matStepperBack type="button">Back</button>
               <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
             </div>
           </mat-step>
-          <mat-step label="Step 3">
+          <mat-step label="Message">
             <mat-form-field>
-              <input matInput placeholder="Message" name="message" required type="text" [(ngModel)]="message" />
+              <input matInput placeholder="Message" name="message" required type="text" [(ngModel)]="message" required />
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperBack type="button">Back</button>
@@ -56,8 +74,9 @@
       <table>
         <tr>
           <td>Event Typ</td>
-          <td>Time</td>
+          <td>Date</td>
           <td>Message</td>
+          <td>Timeframe</td>
           <td>Edit</td>
           <td>Delete</td>
         </tr>
@@ -66,6 +85,7 @@
           <td>{{kk.eventtyp}}</td>
           <td>{{kk.time}}</td>
           <td>{{kk.message}}</td>
+          <td>{{kk.timeframe}}</td>
           <td><a (click)="edit(kk)" style="color:blueviolet">Edit</a></td>
           <td><a (click)="delete(kk._id)" style="color:blueviolet">Delete</a> </td>
         </tr>

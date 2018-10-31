@@ -24,9 +24,9 @@ import {CommonService} from './common.service';
 export const MY_MOMENT_FORMATS = {
   parseInput: 'YYYY-MM-DD kk-mm-ss',
   fullPickerInput: 'LLL',
-  monthYearLabel: 'MMM YYYY',
-  dateA11yLabel: 'LL',
-  monthYearA11yLabel: 'MMMM YYYY',
+  monthYearLabel: 'LLL',
+  dateA11yLabel: 'LLL',
+  monthYearA11yLabel: 'LLL',
 };
 
 
