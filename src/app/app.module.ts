@@ -13,9 +13,11 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';  
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { EventTypIcon } from './eventtypicon.pipe';
@@ -49,8 +51,10 @@ export const MY_MOMENT_FORMATS = {
     MatToolbarModule,
     MatCardModule,
     MatStepperModule,
+    MatTooltipModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatExpansionModule,
     MatIconModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,

@@ -4,17 +4,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class EventTypIcon implements PipeTransform {
   transform(type: string): string {
     switch (type) {
-      case "sport":
+      case "Sport":
         return 'pool';
-      case "game":
+      case "Game":
         return 'casino';
-      case "goout":
+      case "Going out":
         return 'free_breakfast';
-      case "shopping":
+      case "Shopping":
         return 'store';
-      case "cooking":
+      case "Cooking":
         return 'kitchen';
-      case "movie":
+      case "Movie":
         return 'theaters';
       case "other":
         return 'input';

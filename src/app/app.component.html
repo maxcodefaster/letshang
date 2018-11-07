@@ -9,24 +9,29 @@
       <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
         <mat-horizontal-stepper linear labelPosition="bottom">
           <mat-step label="What do you want to do?">
+            <mat-form-field>
+              <input matInput placeholder="Event name" name="name" required type="text" maxlength="80" [(ngModel)]="name"
+                required />
+            </mat-form-field>
+            <br>
             <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
               required>
-              <mat-button-toggle value="sport">
+              <mat-button-toggle value="Sport">
                 <mat-icon>pool</mat-icon>Sport
               </mat-button-toggle>
-              <mat-button-toggle value="game">
+              <mat-button-toggle value="Game">
                 <mat-icon>casino</mat-icon>Game
               </mat-button-toggle>
-              <mat-button-toggle value="goout">
+              <mat-button-toggle value="Going out">
                 <mat-icon>free_breakfast</mat-icon>Go out
               </mat-button-toggle>
-              <mat-button-toggle value="shopping">
+              <mat-button-toggle value="Shopping">
                 <mat-icon>store</mat-icon>Shopping
               </mat-button-toggle>
-              <mat-button-toggle value="cooking">
+              <mat-button-toggle value="Cooking">
                 <mat-icon>kitchen</mat-icon>Cooking
               </mat-button-toggle>
-              <mat-button-toggle value="movie">
+              <mat-button-toggle value="Movie">
                 <mat-icon>theaters</mat-icon>Movie
               </mat-button-toggle>
               <mat-button-toggle value="other">
@@ -43,7 +48,8 @@
                 required>
             </mat-form-field>
             <owl-date-time [pickerMode]="'dialog'" [pickerType]="'calendar'" #dt2></owl-date-time>
-            <!-- <mat-form-field>
+            <!-- <br>
+            <mat-form-field>
               <input matInput name="timeframe" [owlDateTime]="dt1" [selectMode]="'range'" [owlDateTimeTrigger]="dt1"
                 placeholder="Timeframe" [(ngModel)]="timeframe">
             </mat-form-field>
@@ -55,7 +61,8 @@
           </mat-step>
           <mat-step label="Message">
             <mat-form-field>
-              <input matInput placeholder="Message" name="message" required type="text" [(ngModel)]="message" required />
+              <input matInput placeholder="Message" name="message" maxlength="258" required type="text" [(ngModel)]="message"
+                required />
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperBack type="button">Back</button>
@@ -70,26 +77,26 @@
   <p></p>
   <div class="row">
     <mat-card class="col-md-12">
-      <!-- uses 12 columns on smaller than medium screens -->
-      <table class="table">
-        <tr>
-          <td>Event Typ</td>
-          <td>Date</td>
-          <td>Message</td>
-          <td>Timeframe</td>
-          <td>Edit</td>
-          <td>Delete</td>
-        </tr>
-        <tr *ngFor="let kk of Repdata" [hidden]="kk.time.valueOf() < dateNow.valueOf()">
-          <td><mat-icon>{{kk.eventtyp | eventTypIcon}}</mat-icon></td>
-          <td>{{kk.time | date: 'hh:mm dd.MM.yy'}}</td>
-          <td>{{kk.message}}</td>
-          <td>{{kk.timeframe}}</td>
-          <td><a (click)="edit(kk)" style="color:blueviolet">Edit</a></td>
-          <td><a (click)="delete(kk._id)" style="color:blueviolet">Delete</a> </td>
-        </tr>
+      <mat-accordion *ngFor="let kk of Repdata" [hidden]="kk.time.valueOf() < dateNow.valueOf()">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon matTooltip={{kk.eventtyp}} matTooltipPosition="above">{{kk.eventtyp | eventTypIcon}}</mat-icon><b>{{kk.name}}</b>
+            </mat-panel-title>
+            <mat-panel-description>
+              {{kk.time | date: 'dd.MM.yyyy'}}
+            </mat-panel-description>
 
-      </table>
+          </mat-expansion-panel-header>
+
+          {{kk.message}}
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="edit(kk)" type="button">Edit</button>
+            <button mat-button color="primary" (click)="delete(kk._id)" type="button">Delete</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-card>
   </div>
 </section>

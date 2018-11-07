@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare const TEST_FIXTURE: string
 
@@ -28,8 +27,6 @@ export class AppComponent {
   }
 
   onSave = function (event, isValid: boolean) {
-    console.log(event)
-    console.log(isValid)
     event.mode = this.valbutton;
     this.newService.saveEvent(event)
       .subscribe(data => {
