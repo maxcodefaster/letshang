@@ -18,6 +18,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';  
 
 import { AppComponent } from './app.component';
+import { EventTypIcon } from './eventtypicon.pipe';
+
 
 import {CommonService} from './common.service';  
 
@@ -33,6 +35,7 @@ export const MY_MOMENT_FORMATS = {
 @NgModule({
   declarations: [
     AppComponent,
+    EventTypIcon
   ],
   imports: [
     NgbModule,
@@ -51,7 +54,7 @@ export const MY_MOMENT_FORMATS = {
     MatIconModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
-    OwlMomentDateTimeModule 
+    OwlMomentDateTimeModule
   ],
   providers: [
     {provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS},

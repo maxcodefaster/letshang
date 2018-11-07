@@ -5,7 +5,7 @@
 <section class="container">
   <div class="row">
     <!-- responsive row has 12 columns by default -->
-    <mat-card class="col-md-12">
+    <mat-card class="col-md-8">
       <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
         <mat-horizontal-stepper linear labelPosition="bottom">
           <mat-step label="What do you want to do?">
@@ -71,7 +71,7 @@
   <div class="row">
     <mat-card class="col-md-12">
       <!-- uses 12 columns on smaller than medium screens -->
-      <table>
+      <table class="table">
         <tr>
           <td>Event Typ</td>
           <td>Date</td>
@@ -80,10 +80,9 @@
           <td>Edit</td>
           <td>Delete</td>
         </tr>
-        <tr *ngFor="let kk of Repdata">
-
-          <td>{{kk.eventtyp}}</td>
-          <td>{{kk.time}}</td>
+        <tr *ngFor="let kk of Repdata" [hidden]="kk.time.valueOf() < dateNow.valueOf()">
+          <td><mat-icon>{{kk.eventtyp | eventTypIcon}}</mat-icon></td>
+          <td>{{kk.time | date: 'hh:mm dd.MM.yy'}}</td>
           <td>{{kk.message}}</td>
           <td>{{kk.timeframe}}</td>
           <td><a (click)="edit(kk)" style="color:blueviolet">Edit</a></td>

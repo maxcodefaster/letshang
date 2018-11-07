@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+declare const TEST_FIXTURE: string
 
 @Component({
   selector: 'app-root',
@@ -9,38 +10,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  
   constructor(private newService: CommonService, ) { }
   Repdata;
-  valbutton = "Publish";
-
+  valbutton = "Save";
+  dateNow = new Date(Date.now());
+  signedIn = false;
 
   ngOnInit() {
-    this.newService.GetEvent().subscribe(data => this.Repdata = data);
+    this.newService.GetEvent().subscribe(data => {
+      this.Repdata = data;
+      data.forEach(element => {
+        element.time = new Date(element.time);
+      });
+    });
 
   }
 
-  onSave = function (event) {
-    if (!(this.message || this.eventtyp || this.time)) {
-      console.log("empty");
-    } else {
-      event.mode = this.valbutton;
-      this.newService.saveEvent(event)
-        .subscribe(data => {
-          alert(data.data);
+  onSave = function (event, isValid: boolean) {
+    console.log(event)
+    console.log(isValid)
+    event.mode = this.valbutton;
+    this.newService.saveEvent(event)
+      .subscribe(data => {
+        alert(data.data);
 
-          this.ngOnInit();
-        }
-          , error => this.errorMessage = error)
+        this.ngOnInit();
+      }
+        , error => this.errorMessage = error)
 
-    }
   }
   edit = function (kk) {
     this.id = kk._id;
     this.name = kk.name;
     this.message = kk.message;
     this.eventtyp = kk.eventtyp;
-    this.timeframe = kk.timeframe;
     this.time = kk.time;
     this.valbutton = "Update";
   }
