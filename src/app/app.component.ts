@@ -13,6 +13,7 @@ declare const TEST_FIXTURE: string
 export class AppComponent {
   
   constructor(private newService: CommonService,  private breakpointObserver: BreakpointObserver) { 
+    // stepper responsive
     breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small
@@ -29,6 +30,13 @@ export class AppComponent {
   valbutton = "Save";
   dateNow = new Date(Date.now());
   signedIn = false;
+  name = null;
+  eventtypThingy = null;
+  time = null;
+  timeframe = null;
+  message = null;
+  step = null;
+
 
   ngOnInit() {
     this.newService.GetEvent().subscribe(data => {
