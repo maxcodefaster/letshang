@@ -48,7 +48,7 @@ export class AppComponent {
 
   }
 
-  onSave = function (event, isValid: boolean) {
+  onSave = function (event) {
     event.mode = this.valbutton;
     this.newService.saveEvent(event)
       .subscribe(data => {
