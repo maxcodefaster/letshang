@@ -18,6 +18,11 @@ export class AppComponent {
       Breakpoints.Small
     ]).subscribe(result => {
       this.smallScreen = result.matches;
+      if (this.smallScreen) {
+        this.stepperMode = 'vertical';
+      } else {
+        this.stepperMode = 'horizontal';
+      }
   });
   }
   Repdata;
@@ -33,11 +38,6 @@ export class AppComponent {
       });
     });
 
-    if (this.smallScreen) {
-      this.stepperMode = 'vertical';
-    } else {
-      this.stepperMode = 'horizontal';
-    }
   }
 
   onSave = function (event, isValid: boolean) {
