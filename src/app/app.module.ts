@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_FORMATS } from 'ng-pick-datetime';
-import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 /* material components */
@@ -61,7 +60,6 @@ export const MY_MOMENT_FORMATS = {
     MatGridListModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
-    OwlMomentDateTimeModule,
     FlexLayoutModule,
     CovalentStepsModule
   ],
