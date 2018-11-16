@@ -2,13 +2,14 @@
   <mat-toolbar color="primary">letshang</mat-toolbar>
 </header>
 
-<section class="container">
-  <div class="row">
+<section class="container" style="max-width: 100%; margin-bottom: 10px">
+  <div class="row full-width">
     <!-- responsive row has 12 columns by default -->
-    <mat-card class="col-md-8">
+
+    <mat-card class="col-md-9">
       <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
-        <mat-horizontal-stepper linear labelPosition="bottom">
-          <mat-step label="What do you want to do?">
+        <td-steps [mode]="stepperMode">
+          <td-step label="What do you want to do?" [active]="true">
             <mat-form-field>
               <input matInput placeholder="Event name" name="name" required type="text" maxlength="80" [(ngModel)]="name"
                 required />
@@ -39,10 +40,10 @@
               </mat-button-toggle>
             </mat-button-toggle-group>
             <div>
-              <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
+              <button mat-raised-button color="primary" (click)="step.close()" type="button">Next</button>
             </div>
-          </mat-step>
-          <mat-step label="When do you want to hang?">
+          </td-step>
+          <td-step label="When do you want to hang?">
             <mat-form-field>
               <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date" [(ngModel)]="time"
                 required>
@@ -50,31 +51,37 @@
             <owl-date-time [pickerMode]="'dialog'" [pickerType]="'calendar'" #dt2></owl-date-time>
             <br>
             <mat-form-field>
-              <input matInput name="timeframe" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
-                placeholder="Timeframe" [(ngModel)]="timeframe">
+              <input matInput name="timeframe" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Timeframe"
+                [(ngModel)]="timeframe">
             </mat-form-field>
             <owl-date-time [pickerMode]="'dialog'" [pickerType]="'timer'" #dt1></owl-date-time>
             <div>
               <button mat-raised-button matStepperBack type="button">Back</button>
               <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
             </div>
-          </mat-step>
-          <mat-step label="Message">
+          </td-step>
+          <td-step label="Message">
             <mat-form-field>
               <input matInput placeholder="Message" name="message" maxlength="258" required type="text" [(ngModel)]="message"
-                required />
+                required/>
             </mat-form-field>
             <div>
               <button mat-raised-button matStepperBack type="button">Back</button>
               <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
               <button mat-raised-button color="accent" type="submit">{{valbutton}}</button>
             </div>
-          </mat-step>
-        </mat-horizontal-stepper>
+          </td-step>
+        </td-steps>
       </form>
     </mat-card>
+
+    <mat-card class="col-md-3">the mighty USERLOGIN</mat-card>
+
   </div>
-  <p></p>
+
+
+</section>
+<section class="container" style="max-width: 100%">
   <div class="row">
     <mat-card class="col-md-12">
       <mat-accordion *ngFor="let kk of Repdata" [hidden]="kk.time.valueOf() < dateNow.valueOf()">
@@ -100,5 +107,4 @@
     </mat-card>
   </div>
 </section>
-
 <footer></footer>
