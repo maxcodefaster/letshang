@@ -34,7 +34,7 @@ export class AppComponent {
   });
   }
   Repdata;
-  valbutton = "Let´s do it!";
+  valbutton = "Save";
   dateNow = new Date(Date.now());
   signedIn = false;
   name = null;
@@ -57,6 +57,7 @@ export class AppComponent {
 
   onSave = function (event) {
     event.mode = this.valbutton;
+    
     this.newService.saveEvent(event)
       .subscribe(data => {
         alert(data.data);

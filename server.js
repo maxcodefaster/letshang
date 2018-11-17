@@ -78,7 +78,7 @@ var UsersSchema = new Schema({
 
 
 var model = mongo.model('events', EventsSchema, 'events');
-var userModel = mongo.model('users', UsersSchema, 'users');
+/* var userModel = mongo.model('users', UsersSchema, 'users');
 
 var patientZero = new userModel({
   name: 'Zildjian'
@@ -86,12 +86,13 @@ var patientZero = new userModel({
 patientZero.save(function (err) {
   if (err) // ...
     res.send(err);
-});
+}); */
 
 app.post("/api/SaveEvent", function (req, res) {
   var mod = new model(req.body);
   if (req.body.mode == "Save") {
-    mod.save(function (err, data) {
+    console.log(req.body.mode)
+    mod.save(function (err) {
       if (err) {
         res.send(err);
       } else {
@@ -112,6 +113,7 @@ app.post("/api/SaveEvent", function (req, res) {
         if (err) {
           res.send(err);
         } else {
+          console.log(req.body.mode)
           res.send({
             data: "Record has been Updated..!!"
           });
