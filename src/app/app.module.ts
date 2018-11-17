@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
 
 /* Covalent components */
 import { CovalentStepsModule } from '@covalent/core/steps';
@@ -58,6 +59,7 @@ export const MY_MOMENT_FORMATS = {
     MatExpansionModule,
     MatIconModule,
     MatGridListModule,
+    MatMenuModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
     FlexLayoutModule,

@@ -5,6 +5,14 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 declare const TEST_FIXTURE: string
 
+/* todo: 
+make eventSelector responsive
+fix next stepper button
+fix timeformat in form
+add userregister form & database
+add comment function
+add geo location filter */
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
