@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
 import { StepState } from '@covalent/core/steps';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {MatSnackBar} from '@angular/material';
 
 declare const TEST_FIXTURE: string
 
@@ -19,7 +20,7 @@ add geo location filter */
 })
 export class AppComponent {
   
-  constructor(private newService: CommonService,  private breakpointObserver: BreakpointObserver) { 
+  constructor(private newService: CommonService,  private breakpointObserver: BreakpointObserver, public snackBar: MatSnackBar) { 
     // stepper responsive
     breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -60,7 +61,7 @@ export class AppComponent {
     
     this.newService.saveEvent(event)
       .subscribe(data => {
-        alert(data.data);
+       this.openSnackBar();
 
         this.ngOnInit();
       }
@@ -79,6 +80,13 @@ export class AppComponent {
   delete = function (id) {
     this.newService.deleteEvent(id)
       .subscribe(data => { alert(data.data); this.ngOnInit(); }, error => this.errorMessage = error)
+  }
+
+  // show snackbar on save
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open("Your Activity has been published", "Nice!", {
+      duration: 2000,
+    });
   }
 
   // make stepper responsive

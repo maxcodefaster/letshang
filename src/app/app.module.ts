@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 /* Covalent components */
@@ -59,16 +60,17 @@ import { CommonService } from './common.service';
     MatGridListModule,
     MatMenuModule,
     MatBadgeModule,
+    MatSnackBarModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     FlexLayoutModule,
     CovalentStepsModule
   ],
   providers: [
-   /*  {
-      provide: LOCALE_ID,
-      useValue: [LocalizedDate]
-    }, */
+    /*  {
+       provide: LOCALE_ID,
+       useValue: [LocalizedDate]
+     }, */
     CommonService],
   bootstrap: [AppComponent]
 })
