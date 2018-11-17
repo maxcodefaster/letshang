@@ -6,9 +6,8 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 declare const TEST_FIXTURE: string
 
 /* todo: 
-make eventSelector responsive
 fix next stepper button
-fix timeformat in form
+fix timeformat in form => set LOCALE_ID on runtime to onScreen Language
 add userregister form & database
 add comment function
 add geo location filter */
@@ -35,7 +34,7 @@ export class AppComponent {
   });
   }
   Repdata;
-  valbutton = "Save";
+  valbutton = "Let´s do it!";
   dateNow = new Date(Date.now());
   signedIn = false;
   name = null;
@@ -86,6 +85,17 @@ export class AppComponent {
   stepperMode = 'horizontal';
   smallScreen: boolean;
 
- 
+  // stepper Next & Back buttons
+
+  stateStep2: StepState = StepState.Required;
+  stateStep3: StepState = StepState.Complete;
+
+  toggleRequiredStep2(): void {
+    this.stateStep2 = (this.stateStep2 === StepState.Required ? StepState.None : StepState.Required);
+  }
+
+  toggleCompleteStep3(): void {
+    this.stateStep3 = (this.stateStep3 === StepState.Complete ? StepState.None : StepState.Complete);
+  } 
 
 }  

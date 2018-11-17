@@ -1,25 +1,26 @@
 <header>
-  <mat-toolbar color="primary">letshang</mat-toolbar>
+  <mat-toolbar color="primary">QualityTime.today</mat-toolbar>
 </header>
 
 <section class="container" style="max-width: 100%; margin-bottom: 10px">
-  <div class="row full-width">
+  <div class="row">
     <!-- responsive row has 12 columns by default -->
 
     <mat-card class="col-md-9">
       <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
         <td-steps [mode]="stepperMode">
-          <td-step label="What do you want to do?" [active]="true">
-            <mat-form-field>
-              <input matInput placeholder="Event name" name="name" required type="text" maxlength="80" [(ngModel)]="name"
-                required />
+          <td-step #step1 label="What do you want to do?" [active]="true">
+            <mat-form-field appearance="outline">
+              <mat-label>Activity name</mat-label>
+              <input matInput placeholder="What do you want to do?" name="name" required type="text" maxlength="80"
+                [(ngModel)]="name" required />
             </mat-form-field>
             <br>
             <div *ngIf="!smallScreen">
               <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
                 required>
                 <mat-button-toggle value="Sport">
-                  <mat-icon>pool</mat-icon>Sport
+                  <mat-icon >pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after" matBadgeColor="warn">Sport</span>
                 </mat-button-toggle>
                 <mat-button-toggle value="Game">
                   <mat-icon>casino</mat-icon>Game
@@ -45,54 +46,69 @@
               <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
                 required>
                 <mat-button-toggle value="Sport">
-                  <mat-icon>pool</mat-icon>Sport
+                  <mat-icon>pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after" matBadgeColor="warn">Sport</span>
                 </mat-button-toggle>
                 <mat-button-toggle value="Game">
                   <mat-icon>casino</mat-icon>Game
                 </mat-button-toggle>
-                <mat-button-toggle value="Going out">
-                  <mat-icon>free_breakfast</mat-icon>Go out
-                </mat-button-toggle>
-                <mat-button-toggle [matMenuTriggerFor]="menu">Menu</mat-button-toggle>
+                <mat-button-toggle [matMenuTriggerFor]="menu">More...</mat-button-toggle>
               </mat-button-toggle-group>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item value="Shopping"><mat-icon>store</mat-icon>Shopping</button>
-                <button mat-menu-item value="Cooking"><mat-icon>kitchen</mat-icon>Cooking</button>
-                <button mat-menu-item value="Movie"><mat-icon>theaters</mat-icon>Movie</button>
-                <button mat-menu-item value="other"><mat-icon>input</mat-icon>Other</button>
+                <button mat-menu-item value="Going out">
+                  <mat-icon>free_breakfast</mat-icon>Go out
+                </button>
+                <button mat-menu-item value="Shopping">
+                  <mat-icon>store</mat-icon>Shopping
+                </button>
+                <button mat-menu-item value="Cooking">
+                  <mat-icon>kitchen</mat-icon>Cooking
+                </button>
+                <button mat-menu-item value="Movie">
+                  <mat-icon>theaters</mat-icon>Movie
+                </button>
+                <button mat-menu-item value="other">
+                  <mat-icon>input</mat-icon>Other
+                </button>
               </mat-menu>
-
             </div>
             <div>
+              <br>
               <button mat-raised-button color="primary" (click)="step.close()" type="button">Next</button>
             </div>
           </td-step>
-          <td-step label="When do you want to hang?">
-            <mat-form-field>
-              <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date" [(ngModel)]="time"
-                required>
-            </mat-form-field>
-            <owl-date-time [pickerMode]="'dialog'" [pickerType]="'calendar'" #dt2></owl-date-time>
-            <br>
-            <mat-form-field>
-              <input matInput name="timeframe" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Timeframe"
-                [(ngModel)]="timeframe">
-            </mat-form-field>
-            <owl-date-time [pickerMode]="'dialog'" [pickerType]="'timer'" #dt1></owl-date-time>
+          <td-step #step2 label="When do you have time?">
+            <div class="row" style="margin-right:0px; margin-left:0px">
+              <mat-form-field appearance="outline">
+                <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="This day"
+                  [(ngModel)]="time" required>
+              </mat-form-field>
+              <owl-date-time [pickerMode]="'dialog'" [pickerType]="'calendar'" #dt2></owl-date-time>
+
+              <mat-form-field appearance="outline">
+                <input matInput name="timeframe" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="@ this time"
+                  [(ngModel)]="timeframe">
+              </mat-form-field>
+              <owl-date-time [pickerMode]="'dialog'" [pickerType]="'timer'" #dt1></owl-date-time>
+            </div>
             <div>
-              <button mat-raised-button matStepperBack type="button">Back</button>
-              <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
+              <div class="button-row">
+                <button mat-flat-button matStepperBack type="button">Back</button>
+                <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
+              </div>
             </div>
           </td-step>
-          <td-step label="Message">
-            <mat-form-field>
-              <input matInput placeholder="Message" name="message" maxlength="258" required type="text" [(ngModel)]="message"
-                required />
+          <td-step #step3 label="Quick Message">
+            <mat-form-field appearance="outline">
+              <mat-label>Quick Message</mat-label>
+              <textarea matInput placeholder="Write a few words" name="message" maxlength="258" required type="text"
+                [(ngModel)]="message" required></textarea>
             </mat-form-field>
             <div>
-              <button mat-raised-button matStepperBack type="button">Back</button>
-              <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
-              <button mat-raised-button color="accent" type="submit">{{valbutton}}</button>
+              <div class="button-row">
+                <button mat-flat-button matStepperBack type="button">Back</button>
+                <!-- <button mat-raised-button color="primary" matStepperNext type="button">Next</button> -->
+                <button mat-raised-button color="accent" type="submit">{{valbutton}}</button>
+              </div>
             </div>
           </td-step>
         </td-steps>
