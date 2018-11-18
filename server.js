@@ -113,7 +113,6 @@ app.post("/api/SaveEvent", function (req, res) {
         if (err) {
           res.send(err);
         } else {
-          console.log(req.body.mode)
           res.send({
             data: "Record has been Updated..!!"
           });

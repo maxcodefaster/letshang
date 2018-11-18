@@ -1,5 +1,19 @@
 <header>
-  <mat-toolbar color="primary">QualityTime.today</mat-toolbar>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>QualityTime.today</span>
+      <span class="toolbar-spacer"></span>
+      <!-- <mat-icon class="example-icon">location_city</mat-icon> -->
+      <span>
+        <form [style.fontSize.px]="14">
+          <mat-form-field>
+            <input matInput value="Augsburg">
+            <mat-icon matPrefix>location_city</mat-icon>
+          </mat-form-field>
+        </form>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </header>
 
 <section class="container" style="max-width: 100%; margin-bottom: 10px">
@@ -20,7 +34,8 @@
               <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
                 required>
                 <mat-button-toggle value="Sport">
-                  <mat-icon >pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after" matBadgeColor="warn">Sport</span>
+                  <mat-icon>pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after"
+                    matBadgeColor="warn">Sport</span>
                 </mat-button-toggle>
                 <mat-button-toggle value="Game">
                   <mat-icon>casino</mat-icon>Game
@@ -46,7 +61,8 @@
               <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
                 required>
                 <mat-button-toggle value="Sport">
-                  <mat-icon>pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after" matBadgeColor="warn">Sport</span>
+                  <mat-icon>pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after"
+                    matBadgeColor="warn">Sport</span>
                 </mat-button-toggle>
                 <mat-button-toggle value="Game">
                   <mat-icon>casino</mat-icon>Game
@@ -107,7 +123,8 @@
               <div class="button-row">
                 <button mat-flat-button matStepperBack type="button">Back</button>
                 <!-- <button mat-raised-button color="primary" matStepperNext type="button">Next</button> -->
-                <button mat-raised-button color="accent" type="submit"><span style="display: none">{{valbutton}}</span>Let´s do it!</button>
+                <button mat-raised-button color="accent" type="submit"><span style="display: none">{{valbutton}}</span>Let´s
+                  do it!</button>
               </div>
             </div>
           </td-step>

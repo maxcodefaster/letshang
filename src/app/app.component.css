@@ -6,3 +6,7 @@
 .mat-badge-content {
     z-index: 1;
 }
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
