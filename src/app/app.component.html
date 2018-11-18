@@ -89,7 +89,7 @@
             </div>
             <div>
               <br>
-              <button mat-raised-button color="primary" (click)="step.close()" type="button">Next</button>
+              <button mat-raised-button color="primary" (click)="step1.close(); step2.open()" type="button">Next</button>
             </div>
           </td-step>
           <td-step #step2 label="When do you have time?">
@@ -108,8 +108,8 @@
             </div>
             <div>
               <div class="button-row">
-                <button mat-flat-button matStepperBack type="button">Back</button>
-                <button mat-raised-button color="primary" matStepperNext type="button">Next</button>
+                <button mat-flat-button (click)="step1.open(); step2.close()" type="button">Back</button>
+                <button mat-raised-button color="primary" (click)="step2.close(); step3.open()" type="button">Next</button>
               </div>
             </div>
           </td-step>
@@ -121,7 +121,7 @@
             </mat-form-field>
             <div>
               <div class="button-row">
-                <button mat-flat-button matStepperBack type="button">Back</button>
+                <button mat-flat-button  (click)="step3.close(); step2.open()" type="button">Back</button>
                 <!-- <button mat-raised-button color="primary" matStepperNext type="button">Next</button> -->
                 <button mat-raised-button color="accent" type="submit"><span style="display: none">{{valbutton}}</span>Let´s
                   do it!</button>
