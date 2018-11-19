@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
 import { StepState } from '@covalent/core/steps';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {MatSnackBar} from '@angular/material';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSnackBar } from '@angular/material';
+import { LocalizedDatePipe } from './localizedDate.pipe';
+import { TranslateService } from '@ngx-translate/core';
+import { DateTimeAdapter } from 'ng-pick-datetime';
 
 declare const TEST_FIXTURE: string
 
 /* todo: 
-fix next stepper button
-fix timeformat in form => set LOCALE_ID on runtime to onScreen Language
+add timeframe input & output
 add userregister form & database
 add comment function
 add geo location filter */
@@ -19,8 +21,8 @@ add geo location filter */
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  constructor(private newService: CommonService,  private breakpointObserver: BreakpointObserver, public snackBar: MatSnackBar) { 
+
+  constructor(private newService: CommonService, private breakpointObserver: BreakpointObserver, public snackBar: MatSnackBar, translate: TranslateService, dateAdapter: DateTimeAdapter<any>) {
     // stepper responsive
     breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -32,7 +34,8 @@ export class AppComponent {
       } else {
         this.stepperMode = 'horizontal';
       }
-  });
+    });
+    dateAdapter.setLocale(translate.getBrowserCultureLang());
   }
   Repdata;
   valbutton = "Save";
@@ -58,10 +61,9 @@ export class AppComponent {
 
   onSave = function (event) {
     event.mode = this.valbutton;
-    
     this.newService.saveEvent(event)
       .subscribe(data => {
-       this.openSnackBar();
+        this.openSnackBar();
 
         this.ngOnInit();
       }
@@ -93,18 +95,5 @@ export class AppComponent {
 
   stepperMode = 'horizontal';
   smallScreen: boolean;
-
-  // stepper Next & Back buttons
-
-  stateStep2: StepState = StepState.Required;
-  stateStep3: StepState = StepState.Complete;
-
-  toggleRequiredStep2(): void {
-    this.stateStep2 = (this.stateStep2 === StepState.Required ? StepState.None : StepState.Required);
-  }
-
-  toggleCompleteStep3(): void {
-    this.stateStep3 = (this.stateStep3 === StepState.Complete ? StepState.None : StepState.Complete);
-  } 
 
 }  
