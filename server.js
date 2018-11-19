@@ -39,10 +39,6 @@ var EventsSchema = new Schema({
   message: {
     type: String
   },
-  timeframe: {
-    type: Date,
-    default: Date.now
-  },
   eventtyp: {
     type: String
   },
