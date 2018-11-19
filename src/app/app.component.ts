@@ -10,7 +10,6 @@ import { DateTimeAdapter } from 'ng-pick-datetime';
 declare const TEST_FIXTURE: string
 
 /* todo: 
-add timeframe input & output
 add userregister form & database
 add comment function
 add geo location filter */
@@ -35,7 +34,8 @@ export class AppComponent {
         this.stepperMode = 'horizontal';
       }
     });
-    dateAdapter.setLocale(translate.getBrowserCultureLang());
+    this.locale = translate.getBrowserCultureLang();
+    dateAdapter.setLocale(this.locale);
   }
   Repdata;
   valbutton = "Save";
@@ -47,6 +47,7 @@ export class AppComponent {
   timeframe = null;
   message = null;
   step = null;
+  locale = "";
 
 
   ngOnInit() {

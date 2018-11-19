@@ -142,7 +142,7 @@
               <mat-icon matTooltip={{kk.eventtyp}} matTooltipPosition="above">{{kk.eventtyp | eventTypIcon}}</mat-icon><b> {{kk.name}}</b>
             </mat-panel-title>
             <mat-panel-description>
-              {{kk.time | date: 'dd.MM.yyyy'}}
+              {{kk.time | date: 'medium': null : locale}}
             </mat-panel-description>
 
           </mat-expansion-panel-header>
