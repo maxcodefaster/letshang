@@ -8,9 +8,12 @@ import { DateTimeAdapter } from 'ng-pick-datetime';
 declare const TEST_FIXTURE: string
 
 /* todo: 
+import all locales
 add userregister form & database
 add comment function
-add geo location filter */
+add geo location filter 
+divide components 
+*/
 
 @Component({
   selector: 'app-root',
@@ -62,8 +65,7 @@ export class AppComponent {
     event.mode = this.valbutton;
     this.newService.saveEvent(event)
       .subscribe(data => {
-        this.openSnackBar();
-
+        this.openSnackBar(data.data, data.action);
         this.ngOnInit();
       }
         , error => this.errorMessage = error)
@@ -85,7 +87,7 @@ export class AppComponent {
 
   // show snackbar on save
   openSnackBar(message: string, action: string) {
-    this.snackBar.open("Your Activity has been published", "Nice!", {
+    this.snackBar.open(message, action, {
       duration: 2000,
     });
   }

@@ -87,21 +87,27 @@ patientZero.save(function (err) {
 app.post("/api/SaveEvent", function (req, res) {
   var mod = new model(req.body);
   if (req.body.mode == "Save") {
-    console.log(req.body.mode)
-    mod.save(function (err) {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send({
-          data: "Record has been Inserted..!!"
-        });
+    if (req.body.name == null | req.body.message == null | req.body.eventtyp == null | req.body.time == null) {
+      res.send({
+        data: "Please fill out all fields",
+        action: "Will do..."
+      });
+    } else {
+      mod.save(function (err) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send({
+              data: "Your Quality Time is about to start",
+              action: "Nice!"
+            });
+          }
+        })
       }
-    });
   } else {
     model.findByIdAndUpdate(req.body.id, {
         name: req.body.name,
         message: req.body.message,
-        timeframe: req.body.timeframe,
         eventtyp: req.body.eventtyp,
         time: req.body.time
       },
