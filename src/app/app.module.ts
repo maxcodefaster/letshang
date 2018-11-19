@@ -40,7 +40,6 @@ import { CovalentStepsModule } from '@covalent/core/steps';
 /* Components & Pipes */
 import { AppComponent } from './app.component';
 import { EventTypIcon } from './eventtypicon.pipe';
-import { LocalizedDatePipe } from './localizedDate.pipe';
 
 import { CommonService } from './common.service';
 
@@ -48,7 +47,6 @@ import { CommonService } from './common.service';
   declarations: [
     AppComponent,
     EventTypIcon,
-    LocalizedDatePipe
   ],
   imports: [
     NgbModule,

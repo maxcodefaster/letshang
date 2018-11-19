@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from './common.service';
-import { StepState } from '@covalent/core/steps';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material';
-import { LocalizedDatePipe } from './localizedDate.pipe';
 import { TranslateService } from '@ngx-translate/core';
 import { DateTimeAdapter } from 'ng-pick-datetime';
 

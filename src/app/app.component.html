@@ -28,6 +28,7 @@
               <mat-label>Activity name</mat-label>
               <input matInput placeholder="What do you want to do?" name="name" required type="text" maxlength="80"
                 [(ngModel)]="name" required />
+              <mat-icon matSuffix>person_pin</mat-icon>
             </mat-form-field>
             <br>
             <div *ngIf="!smallScreen">
@@ -95,8 +96,10 @@
           <td-step #step2 label="When do you have time?">
             <div class="row" style="margin-right:0px; margin-left:0px">
               <mat-form-field appearance="outline">
-                <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="This day"
+                <mat-label>Date & Time</mat-label>
+                <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="When do you have time"
                   [(ngModel)]="time" required>
+                <mat-icon matSuffix>event</mat-icon>
               </mat-form-field>
               <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
             </div>
@@ -115,7 +118,7 @@
             </mat-form-field>
             <div>
               <div class="button-row">
-                <button mat-flat-button  (click)="step3.close(); step2.open()" type="button">Back</button>
+                <button mat-flat-button (click)="step3.close(); step2.open()" type="button">Back</button>
                 <!-- <button mat-raised-button color="primary" matStepperNext type="button">Next</button> -->
                 <button mat-raised-button color="accent" type="submit"><span style="display: none">{{valbutton}}</span>Let´s
                   do it!</button>
@@ -139,7 +142,8 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon matTooltip={{kk.eventtyp}} matTooltipPosition="above">{{kk.eventtyp | eventTypIcon}}</mat-icon><b> {{kk.name}}</b>
+              <mat-icon matTooltip={{kk.eventtyp}} matTooltipPosition="above">{{kk.eventtyp | eventTypIcon}}</mat-icon><b>
+                {{kk.name}}</b>
             </mat-panel-title>
             <mat-panel-description>
               {{kk.time | date: 'medium': null : locale}}
