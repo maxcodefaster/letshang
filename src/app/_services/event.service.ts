@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map, filter, scan } from 'rxjs/operators';
   
 @Injectable()  
-export class CommonService {  
+export class EventService {  
   
   constructor(private http: Http) { }  
   

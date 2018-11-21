@@ -21,112 +21,7 @@
     <!-- responsive row has 12 columns by default -->
 
     <mat-card class="col-md-9">
-      <form #userForm="ngForm" (ngSubmit)="onSave(userForm.value)" novalidate>
-        <td-steps [mode]="stepperMode">
-          <td-step #step1 label="What do you want to do?" [active]="true">
-            <mat-form-field appearance="outline">
-              <mat-label>Activity name</mat-label>
-              <input matInput placeholder="What do you want to do?" name="name" required type="text" maxlength="80"
-                [(ngModel)]="name" required />
-              <mat-icon matSuffix>person_pin</mat-icon>
-            </mat-form-field>
-            <br>
-            <div *ngIf="!smallScreen">
-              <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
-                required>
-                <mat-button-toggle value="Sport">
-                  <mat-icon>pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after"
-                    matBadgeColor="warn">Sport</span>
-                </mat-button-toggle>
-                <mat-button-toggle value="Game">
-                  <mat-icon>casino</mat-icon>Game
-                </mat-button-toggle>
-                <mat-button-toggle value="Going out">
-                  <mat-icon>free_breakfast</mat-icon>Go out
-                </mat-button-toggle>
-                <mat-button-toggle value="Shopping">
-                  <mat-icon>store</mat-icon>Shopping
-                </mat-button-toggle>
-                <mat-button-toggle value="Cooking">
-                  <mat-icon>kitchen</mat-icon>Cooking
-                </mat-button-toggle>
-                <mat-button-toggle value="Movie">
-                  <mat-icon>theaters</mat-icon>Movie
-                </mat-button-toggle>
-                <mat-button-toggle value="other">
-                  <mat-icon>input</mat-icon>Other
-                </mat-button-toggle>
-              </mat-button-toggle-group>
-            </div>
-            <div *ngIf="smallScreen">
-              <mat-button-toggle-group #group="matButtonToggleGroup" name="eventtyp" [(ngModel)]="eventtypThingy"
-                required>
-                <mat-button-toggle value="Sport">
-                  <mat-icon>pool</mat-icon><span matBadge="hot" matBadgeOverlap="false" matBadgePosition="after"
-                    matBadgeColor="warn">Sport</span>
-                </mat-button-toggle>
-                <mat-button-toggle value="Game">
-                  <mat-icon>casino</mat-icon>Game
-                </mat-button-toggle>
-                <mat-button-toggle [matMenuTriggerFor]="menu">More...</mat-button-toggle>
-              </mat-button-toggle-group>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item value="Going out">
-                  <mat-icon>free_breakfast</mat-icon>Go out
-                </button>
-                <button mat-menu-item value="Shopping">
-                  <mat-icon>store</mat-icon>Shopping
-                </button>
-                <button mat-menu-item value="Cooking">
-                  <mat-icon>kitchen</mat-icon>Cooking
-                </button>
-                <button mat-menu-item value="Movie">
-                  <mat-icon>theaters</mat-icon>Movie
-                </button>
-                <button mat-menu-item value="other">
-                  <mat-icon>input</mat-icon>Other
-                </button>
-              </mat-menu>
-            </div>
-            <div>
-              <br>
-              <button mat-raised-button color="primary" (click)="step1.close(); step2.open()" type="button">Next</button>
-            </div>
-          </td-step>
-          <td-step #step2 label="When do you have time?">
-            <div class="row" style="margin-right:0px; margin-left:0px">
-              <mat-form-field appearance="outline">
-                <mat-label>Date & Time</mat-label>
-                <input matInput name="time" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="When do you have time"
-                  [(ngModel)]="time" required>
-                <mat-icon matSuffix>event</mat-icon>
-              </mat-form-field>
-              <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
-            </div>
-            <div>
-              <div class="button-row">
-                <button mat-flat-button (click)="step1.open(); step2.close()" type="button">Back</button>
-                <button mat-raised-button color="primary" (click)="step2.close(); step3.open()" type="button">Next</button>
-              </div>
-            </div>
-          </td-step>
-          <td-step #step3 label="Quick Message">
-            <mat-form-field appearance="outline">
-              <mat-label>Quick Message</mat-label>
-              <textarea matInput placeholder="Write a few words" name="message" maxlength="258" required type="text"
-                [(ngModel)]="message" required></textarea>
-            </mat-form-field>
-            <div>
-              <div class="button-row">
-                <button mat-flat-button (click)="step3.close(); step2.open()" type="button">Back</button>
-                <!-- <button mat-raised-button color="primary" matStepperNext type="button">Next</button> -->
-                <button mat-raised-button color="accent" type="submit"><span style="display: none">{{valbutton}}</span>Let´s
-                  do it!</button>
-              </div>
-            </div>
-          </td-step>
-        </td-steps>
-      </form>
+      <app-eventwizard></app-eventwizard>
     </mat-card>
 
     <mat-card class="col-md-3">the mighty USERLOGIN</mat-card>
@@ -138,27 +33,7 @@
 <section class="container" style="max-width: 100%">
   <div class="row">
     <mat-card class="col-md-12">
-      <mat-accordion *ngFor="let kk of Repdata" [hidden]="kk.time.valueOf() < dateNow.valueOf()">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon matTooltip={{kk.eventtyp}} matTooltipPosition="above">{{kk.eventtyp | eventTypIcon}}</mat-icon><b>
-                {{kk.name}}</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              {{kk.time | date: 'medium': null : locale}}
-            </mat-panel-description>
-
-          </mat-expansion-panel-header>
-
-          {{kk.message}}
-
-          <mat-action-row>
-            <button mat-button color="warn" (click)="edit(kk)" type="button">Edit</button>
-            <button mat-button color="primary" (click)="delete(kk._id)" type="button">Delete</button>
-          </mat-action-row>
-        </mat-expansion-panel>
-      </mat-accordion>
+      <app-eventlist></app-eventlist>
     </mat-card>
   </div>
 </section>

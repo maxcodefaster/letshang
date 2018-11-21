@@ -1,0 +1,21 @@
+<mat-accordion *ngFor="let kk of Repdata" [hidden]="kk.time.valueOf() < dateNow.valueOf()">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon matTooltip={{kk.eventtyp}} matTooltipPosition="above">{{kk.eventtyp | eventTypIcon}}</mat-icon><b>
+          {{kk.name}}</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        {{kk.time | date: 'medium': null : locale}}
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+    {{kk.message}}
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="edit(kk)" type="button">Edit</button>
+      <button mat-button color="primary" (click)="delete(kk._id)" type="button">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

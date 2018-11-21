@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from './common.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatSnackBar } from '@angular/material';
-import { TranslateService } from '@ngx-translate/core';
-import { DateTimeAdapter } from 'ng-pick-datetime';
+
 
 declare const TEST_FIXTURE: string
 
 /* todo: 
+when onSave in eventwizard => ngOninit in eventlist (update list asap)
 import all locales
 add userregister form & database
 add comment function
@@ -22,79 +19,11 @@ divide components
 })
 export class AppComponent {
 
-  constructor(private newService: CommonService, private breakpointObserver: BreakpointObserver, public snackBar: MatSnackBar, translate: TranslateService, dateAdapter: DateTimeAdapter<any>) {
-    // stepper responsive
-    breakpointObserver.observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small
-    ]).subscribe(result => {
-      this.smallScreen = result.matches;
-      if (this.smallScreen) {
-        this.stepperMode = 'vertical';
-      } else {
-        this.stepperMode = 'horizontal';
-      }
-    });
-    this.locale = translate.getBrowserCultureLang();
-    dateAdapter.setLocale(this.locale);
-  }
-  Repdata;
-  valbutton = "Save";
-  dateNow = new Date(Date.now());
-  signedIn = false;
-  name = null;
-  eventtypThingy = null;
-  time = null;
-  timeframe = null;
-  message = null;
-  step = null;
-  locale = "";
+  constructor() {}
+    
 
 
   ngOnInit() {
-    this.newService.GetEvent().subscribe(data => {
-      this.Repdata = data;
-      data.forEach(element => {
-        element.time = new Date(element.time);
-      });
-    });
-
   }
-
-  onSave = function (event) {
-    event.mode = this.valbutton;
-    this.newService.saveEvent(event)
-      .subscribe(data => {
-        this.openSnackBar(data.data, data.action);
-        this.ngOnInit();
-      }
-        , error => this.errorMessage = error)
-
-  }
-  edit = function (kk) {
-    this.id = kk._id;
-    this.name = kk.name;
-    this.message = kk.message;
-    this.eventtyp = kk.eventtyp;
-    this.time = kk.time;
-    this.valbutton = "Update";
-  }
-
-  delete = function (id) {
-    this.newService.deleteEvent(id)
-      .subscribe(data => { alert(data.data); this.ngOnInit(); }, error => this.errorMessage = error)
-  }
-
-  // show snackbar on save
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-
-  // make stepper responsive
-
-  stepperMode = 'horizontal';
-  smallScreen: boolean;
 
 }  

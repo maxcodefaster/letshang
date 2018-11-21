@@ -41,12 +41,16 @@ import { CovalentStepsModule } from '@covalent/core/steps';
 import { AppComponent } from './app.component';
 import { EventTypIcon } from './eventtypicon.pipe';
 
-import { CommonService } from './common.service';
+import { EventService } from './_services/event.service';
+import { EventwizardComponent } from './eventwizard/eventwizard.component';
+import { EventlistComponent } from './eventlist/eventlist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventTypIcon,
+    EventwizardComponent,
+    EventlistComponent,
   ],
   imports: [
     NgbModule,
@@ -76,7 +80,7 @@ import { CommonService } from './common.service';
     TranslateModule.forRoot()
   ],
   providers: [
-    CommonService,
+    EventService,
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'fr'},
   ],
   bootstrap: [AppComponent]

@@ -133,7 +133,8 @@ app.post("/api/deleteEvent", function (req, res) {
       res.send(err);
     } else {
       res.send({
-        data: "Record has been Deleted..!!"
+        data: "Record has been Deleted...",
+        action: ":("
       });
     }
   });
