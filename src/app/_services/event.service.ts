@@ -3,6 +3,7 @@ import {Http,Response, Headers, RequestOptions } from '@angular/http';
    
 import { Observable } from 'rxjs';  
 import { map, filter, scan } from 'rxjs/operators';
+import { environment } from '../environments/environment';
   
 @Injectable()  
 export class EventService {  
@@ -10,16 +11,16 @@ export class EventService {
   constructor(private http: Http) { }  
   
   saveEvent(event){      
-    return this.http.post('http://localhost:8080/api/SaveEvent/', event)  
+    return this.http.post(`${environment.apiUrl}/SaveEvent/`, event)  
             .pipe(map((response: Response) =>response.json()))              
   }  
   
   GetEvent(){       
-    return this.http.get('http://localhost:8080/api/getEvent/')  
+    return this.http.get(`${environment.apiUrl}/getEvent/`)  
             .pipe(map((response: Response) => response.json()))              
   }  
  deleteEvent(id){   
-    return this.http.post('http://localhost:8080/api/deleteEvent/',{'id': id})  
+    return this.http.post(`${environment.apiUrl}/deleteEvent/`,{'id': id})  
             .pipe(map((response: Response) =>response.json()))               
   }  
   

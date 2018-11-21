@@ -44,6 +44,11 @@ import { EventTypIcon } from './eventtypicon.pipe';
 import { EventService } from './_services/event.service';
 import { EventwizardComponent } from './eventwizard/eventwizard.component';
 import { EventlistComponent } from './eventlist/eventlist.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RouterModule } from '@angular/router';
+import { routing } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,8 @@ import { EventlistComponent } from './eventlist/eventlist.component';
     EventTypIcon,
     EventwizardComponent,
     EventlistComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     NgbModule,
@@ -61,6 +68,7 @@ import { EventlistComponent } from './eventlist/eventlist.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    HttpClientModule,
     MatToolbarModule,
     MatCardModule,
     MatTooltipModule,
@@ -77,7 +85,8 @@ import { EventlistComponent } from './eventlist/eventlist.component';
     OwlNativeDateTimeModule,
     FlexLayoutModule,
     CovalentStepsModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    routing,
   ],
   providers: [
     EventService,
